@@ -1,0 +1,14 @@
+{
+  "project_dir": "/srv/ad",
+  "compose_file": "docker-compose.yml",
+  "backup_dir": "/srv/ad-backups",
+  "docker_cmd": ["docker"],
+  "tail_lines": 200,
+  "volume_backup_image": "alpine:3.20",
+  "backup_exclude": [".git", "__pycache__", "node_modules", ".venv", "venv", ".devops-backups"],
+  "extra_paths": ["/etc/nginx", "/etc/letsencrypt"],
+  "pre_backup_commands": [],
+  "staging_dir": "/srv/ad-staging",
+  "staging_port_offset": 10000,
+  "staging_project_prefix": "adstage"
+}
