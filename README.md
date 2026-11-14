@@ -7,8 +7,9 @@
 объёмы — из `docker volume ls` по метке проекта, порты — из `docker compose config`.
 
 ## Требования
-- Python 3.8+
+- bash 4.0+ (Linux, WSL или Git Bash)
 - Docker + Docker Compose v2 (`docker compose ...`)
+- `tar`, `awk`, `sed`, `grep`, `du`, `df` (есть в базовой системе)
 - Права на чтение проекта; для бэкапа `/etc/...` и volumes — root
 - Для бэкапа volumes нужен образ с `tar` (по умолчанию `alpine:3.20`, можно заменить)
 
@@ -19,13 +20,9 @@ chmod +x devops.sh                # один раз
 ./devops.sh --config /path/config.json
 ./devops.sh status                # CLI без меню
 ```
-`devops.sh` сам находит `python3`/`python` (Python 3.8+) и запускает `devops.py`;
-если Python нет в PATH — скрипт сообщит об этом и завершится с кодом 127.
-На Windows используйте Git Bash/WSL либо запускайте напрямую:
-```powershell
-python devops.py
-```
-Если в консоли кракозябры: `chcp 65001`.
+Скрипт полностью на bash — Python и jq не нужны. JSON-конфиг и `meta.json`
+разбираются встроенным awk-парсером.
+На Windows запускайте через Git Bash или WSL (`bash devops.sh`); в PowerShell/Python не требуется.
 
 ## Меню
 1. **Состояние сервера** — `docker compose ps`, health, рестарты, порты, load/RAM/disk, `docker system df`.
