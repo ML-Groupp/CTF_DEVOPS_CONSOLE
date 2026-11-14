@@ -14,12 +14,16 @@
 
 ## Запуск
 ```bash
-python3 devops.py                 # меню, при первом запуске спросит настройки
-python3 devops.py --config /path/config.json
+chmod +x devops.sh                # один раз
+./devops.sh                       # меню, при первом запуске спросит настройки
+./devops.sh --config /path/config.json
+./devops.sh status                # CLI без меню
 ```
-На Windows:
+`devops.sh` сам находит `python3`/`python` (Python 3.8+) и запускает `devops.py`;
+если Python нет в PATH — скрипт сообщит об этом и завершится с кодом 127.
+На Windows используйте Git Bash/WSL либо запускайте напрямую:
 ```powershell
-python devops\devops.py
+python devops.py
 ```
 Если в консоли кракозябры: `chcp 65001`.
 
@@ -67,13 +71,13 @@ python devops\devops.py
 
 ## CLI без меню (для скриптов и cron)
 ```bash
-python3 devops.py status
-python3 devops.py tail --service web
-python3 devops.py backups
-python3 devops.py backup --label nightly
-python3 devops.py backup --full --label pregame
-python3 devops.py restore --name 20261111-120000_pregame
-python3 devops.py staging --backup 20261111-120000_pregame
+./devops.sh status
+./devops.sh tail --service web
+./devops.sh backups
+./devops.sh backup --label nightly
+./devops.sh backup --full --label pregame
+./devops.sh restore --name 20261111-120000_pregame
+./devops.sh staging --backup 20261111-120000_pregame
 ```
 
 ## Что важно знать
